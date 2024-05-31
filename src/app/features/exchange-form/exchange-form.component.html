@@ -1,0 +1,28 @@
+<app-card>
+  <!-- <h2 card-header>Konwerter</h2> -->
+  <form card-body [formGroup]="conversionForm" (ngSubmit)="convertCurrency()">
+    <div>
+      <label for="amount">Kwota:</label>
+      <input type="number" id="amount" formControlName="amount" class="w-full" />
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 0.5rem">
+      <div>
+        <label for="fromCurrency">Mam:</label>
+        <app-currency-select
+          [options]="exchangeRates()"
+          [id]="'fromCurrency'"
+          formControlName="fromCurrency" />
+      </div>
+      <button type="button" class="switch-currency-button">&harr;</button>
+      <div>
+        <label for="toCurrency">Chcę:</label>
+        <app-currency-select
+          [options]="exchangeRates()"
+          [id]="'toCurrency'"
+          formControlName="toCurrency" />
+      </div>
+    </div>
+
+    <button type="submit" class="primary w-full">Przelicz</button>
+  </form>
+</app-card>

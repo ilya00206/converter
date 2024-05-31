@@ -1,0 +1,16 @@
+<header>
+  @for (link of skipLinks; track link.id) {
+    <app-skip-link [skipLink]="link" />
+  }
+  <div class="container">
+    <div class="header-content">
+      <div class="header-logo">
+        <h1>Przelicznik Walut NBP</h1>
+      </div>
+      <div class="header-date-search">
+        <input type="date" id="date" [(ngModel)]="date" aria-label="Data" />
+        <button class="primary">Zatwierdź datę</button>
+      </div>
+    </div>
+  </div>
+</header>

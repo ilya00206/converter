@@ -1,0 +1,26 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #ffff;
+  border-bottom: 1px solid var(--border-color);
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 5px 0;
+  min-height: 50px;
+}
+
+.header-logo {
+  display: flex;
+}
+.header-date-search {
+  display: flex;
+  gap: 0.5rem;
+
+  flex-wrap: wrap;
+}

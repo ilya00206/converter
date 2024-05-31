@@ -1,0 +1,20 @@
+.page {
+  display: flex;
+  gap: 1rem;
+}
+.exchange-form-section {
+  flex: 1 1 30%;
+}
+.rates-list-section {
+  flex: 1 1 70%;
+}
+
+@media (max-width: 600px) {
+  .page {
+    flex-direction: column;
+  }
+  .exchange-form-section,
+  .rates-list-section {
+    flex-basis: 100%;
+  }
+}

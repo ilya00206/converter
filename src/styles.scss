@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'app/ui/button/button';
+@use 'app/ui/input/input';
+
+:root {
+  --foreground-color: #242424;
+  --background-color: #fff;
+  --border-color: #d1d5db;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--foreground-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
