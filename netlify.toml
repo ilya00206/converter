@@ -1,4 +1,4 @@
 [build]
-command = "ng build"
+command = "pm cache clean --force && npm install && ng build"
 functions = "netlify/functions"
 publish = "dist/currency-exchange/browser"
