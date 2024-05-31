@@ -36,8 +36,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: var(--foreground-color);
   background-color: var(--background-color);
-  -webkit-font-smoothing: antialiased; /* For WebKit browsers */
-  -moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
 }
 
 .container {
@@ -58,11 +56,12 @@ h2 {
 h1 {
   font-size: 1.5rem;
 }
-
 h2 {
   font-size: 1.375rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
+
 @media screen and (max-width: 600px) {
   html {
     font-size: 14px;

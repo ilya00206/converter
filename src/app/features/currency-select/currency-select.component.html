@@ -1,4 +1,4 @@
-<select [id]="id()" [(ngModel)]="value" (ngModelChange)="valueChanged($event)" class="w-full">
+<select class="w-full" [id]="id()" [(ngModel)]="value" (ngModelChange)="valueChanged($event)">
   @for (rate of options(); track rate.code) {
     <option [value]="rate.code">{{ rate.code }}</option>
   }

@@ -1,0 +1,10 @@
+<form class="date-search" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input
+    type="date"
+    id="date"
+    name="date"
+    aria-label="Data"
+    formControlName="date"
+    [max]="maxDate" />
+  <button type="submit" class="primary">Szukaj</button>
+</form>

@@ -1,17 +1,19 @@
 <app-card>
   <table card-body>
     <caption>
-      Tabela kursów średnich NBP nr 104/A/NBP/2024 z dnia 29-05-2024
+      {{
+        caption
+      }}
     </caption>
     <thead>
       <tr>
-        <th>Waluta</th>
-        <th>Symbol waluty</th>
-        <th>Kurs średni</th>
+        <th scope="col">Waluta</th>
+        <th scope="col">Symbol waluty</th>
+        <th scope="col">Kurs średni</th>
       </tr>
     </thead>
     <tbody>
-      @for (rate of exchangeRates(); track rate.code) {
+      @for (rate of response()?.rates; track rate.code) {
         <tr>
           <td>{{ rate.currency }}</td>
           <td>{{ rate.code }}</td>

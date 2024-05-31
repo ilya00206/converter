@@ -15,17 +15,8 @@ header {
   min-height: 50px;
 }
 
-.header-date-search {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
 @media (max-width: 600px) {
   .header-content {
     justify-content: center;
-  }
-  .header-date-search * {
-    // width: 100%;
   }
 }

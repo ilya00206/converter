@@ -1,8 +1,7 @@
 <app-card>
-  <div card-header>
-    <h2>Wynik</h2>
-  </div>
-  <div card-body>
+  <h2 card-header>Wynik</h2>
+
+  <div card-body class="conversion-result">
     {{ result().amount | number: '1.2' }} {{ result().fromCurrency }} =
     {{ result().result | number: '1.2' }}
     {{ result().toCurrency }}

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ExchangeRate } from '../../pages/currencies-page/rate.model';
 import { DecimalPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NBPTableResponse } from '../../pages/currencies-page/rate.model';
 import { CardComponent } from '../../ui/card/card.component';
 
 @Component({
@@ -12,5 +12,9 @@ import { CardComponent } from '../../ui/card/card.component';
   imports: [DecimalPipe, CardComponent],
 })
 export class ExchangeRatesListComponent {
-  readonly exchangeRates = input<ExchangeRate[]>([]);
+  readonly response = input<NBPTableResponse>();
+
+  get caption() {
+    return `Tabela kursów średnich NBP nr ${this.response()?.no} z dnia ${this.response()?.effectiveDate}`;
+  }
 }

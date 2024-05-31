@@ -1,5 +1,9 @@
 # Aplikacja do przeliczania walut NBP
 
+## Demo
+
+[Link do aplikacji](https://master--currency-converter-nbp.netlify.app/)
+
 ## Wymagania funkcjonalne i niefunkcjonalne
 
 - Aplikacja powinna pobierać dane o kursach walut z API Narodowego Banku Polskiego
@@ -37,8 +41,7 @@
 - Jest wykorzystany `inject` zamiast `constructor`
 - Struktura aplikacji została zaprojektowana z myślą o ewentualnej łatwej rozbudowie w przyszłości
 - Aplikacja korzysta z `experimental` i `dev preview` API
-- Są napisane testy jednostkowe dla ważnych funkcjonalności
+- Pokrycie kodu testami na poziomie powyżej 80%
 - Aplikacja wspiera motyw jasny i ciemny, w zależności od preferencji urządzenia
 - Aplikacja została przetestowana ręcznie na przeglądarkach Chrome, Edge, Firefox oraz Safari na urządzeniu iOS
-- Aplikacja jest hostowana na `firebase`
-
+- Aplikacja jest hostowana na `netlify`

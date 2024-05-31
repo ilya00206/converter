@@ -2,18 +2,17 @@ import { ChangeDetectionStrategy, Component, effect, inject, input, signal } fro
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ExchangeRate } from '../../pages/currencies-page/rate.model';
 import { CardComponent } from '../../ui/card/card.component';
-import { SwitchIconComponent } from '../../ui/icons/switch-icon/switch-icon.component';
 import { ConversionResult } from '../conversion-result/converion-result.model';
 import { ConversionResultComponent } from '../conversion-result/conversion-result.component';
 import { CurrencySelectComponent } from '../currency-select/currency-select.component';
 import { PLN_CURRENCY } from '../currency-select/pln-currency';
 import { SwitchButtonComponent } from '../switch-button/switch-button.component';
 
-type ConverterData = {
+interface ConverterData {
   amount: number;
   fromCurrency: string;
   toCurrency: string;
-};
+}
 
 @Component({
   selector: 'app-exchange-form',

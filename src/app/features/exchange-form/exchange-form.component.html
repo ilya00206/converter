@@ -9,17 +9,17 @@
         <div>
           <label for="fromCurrency">Mam:</label>
           <app-currency-select
+            formControlName="fromCurrency"
             [options]="exchangeRates()"
-            [id]="'fromCurrency'"
-            formControlName="fromCurrency" />
+            [id]="'fromCurrency'" />
         </div>
         <app-switch-button (clicked)="switchCurrencies()" />
         <div>
           <label for="toCurrency">Chcę</label>
           <app-currency-select
+            formControlName="toCurrency"
             [options]="exchangeRates()"
-            [id]="'toCurrency'"
-            formControlName="toCurrency" />
+            [id]="'toCurrency'" />
         </div>
       </div>
       <div class="actions">

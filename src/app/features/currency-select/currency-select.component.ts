@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ExchangeRate } from '../../pages/currencies-page/rate.model';
-import { PLN_CURRENCY } from './pln-currency';
 
 type OnChangeFn = (value: string) => void;
 type OnTouchedFn = () => void;
@@ -26,8 +25,8 @@ export class CurrencySelectComponent implements ControlValueAccessor {
 
   readonly value = signal('');
 
-  onChange: OnChangeFn = () => {};
-  onTouched: OnTouchedFn = () => {};
+  onChange!: OnChangeFn;
+  onTouched!: OnTouchedFn;
 
   registerOnChange(fn: OnChangeFn): void {
     this.onChange = fn;
