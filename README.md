@@ -1,27 +1,44 @@
-# CurrencyExchange
+# Aplikacja do przeliczania walut NBP
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
+## Wymagania funkcjonalne i niefunkcjonalne
 
-## Development server
+- Aplikacja powinna pobierać dane o kursach walut z API Narodowego Banku Polskiego
+- Na stronie głównej powinny być wyświetlane aktualne kursy walut z możliwością wyboru daty waluty
+- Użytkownik powinien mieć możliwość przeliczenia kwoty z jednej waluty na drugą. Do tego celu powinien być dostępny formularz, w którym użytkownik może wprowadzić kwotę i wybrać waluty
+- Aplikacja powinna być responsywna i dobrze wyglądać na różnych urządzeniach
+- Aplikacja powinna spełniać standardy WCAG 2.1
+- UI powinien być czytelny i atrakcyjny
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologie i narzędzia
 
-## Code scaffolding
+- Angular v18 zoneless
+- Node v20.11.1
+- TypeScript v5.4
+- Scss
+- Jasmine, Karma
+- Eslint
+- Prettier
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Uruchomienie wersji developierskiej
 
-## Build
+- npm install
+- npm start
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Założenia programistyczne
 
-## Running unit tests
+- Aplikacja jest napisana w najnowszych technologiach na 02.05.2024
+- Aplikacja nie korzysta z żadnych gotowych bibliotek zewnętrznych
+- Aplikacja korzysta z `SSR`
+- `Zone.js` został usunięty z projektu
+- Wszystkie komponenty są oparte o `ChangeDetectionStrategy.OnPush`
+- API komponentów jest oparte o `signals`
+- Wszystkie komponenty są `standalone`
+- Jest wykorzystany nowy `control flow`
+- Jest wykorzystany `inject` zamiast `constructor`
+- Struktura aplikacji została zaprojektowana z myślą o ewentualnej łatwej rozbudowie w przyszłości
+- Aplikacja korzysta z `experimental` i `dev preview` API
+- Są napisane testy jednostkowe dla ważnych funkcjonalności
+- Aplikacja wspiera motyw jasny i ciemny, w zależności od preferencji urządzenia
+- Aplikacja została przetestowana ręcznie na przeglądarkach Chrome, Edge, Firefox oraz Safari na urządzeniu iOS
+- Aplikacja jest hostowana na `firebase`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
