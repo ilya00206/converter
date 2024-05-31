@@ -2,13 +2,10 @@
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
-const unusedImports = require('eslint-plugin-unused-imports');
 module.exports = tseslint.config(
   {
     files: ['**/*.ts'],
-    plugins: {
-      'unused-imports': unusedImports,
-    },
+
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
@@ -60,17 +57,6 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-confusing-non-null-assertion': 'warn',
       '@typescript-eslint/no-duplicate-enum-values': 'warn',
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
-
-      'unused-imports/no-unused-imports': 'warn',
-      'unused-imports/no-unused-vars': [
-        'warn',
-        {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
-      ],
     },
   },
   {
