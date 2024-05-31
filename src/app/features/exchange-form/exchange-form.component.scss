@@ -1,12 +1,27 @@
+.convertor {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.switch-currency-button {
-  font-size: 2rem;
-  line-height: 1;
+.actions {
+  margin-top: 0.5rem;
 }
+.currency-form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  div {
+    flex-basis: 45%;
+  }
+}
+
 label {
   display: block;
   font-weight: 500;

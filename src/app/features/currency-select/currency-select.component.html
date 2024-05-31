@@ -1,9 +1,5 @@
-<select
-  [id]="id()"
-  [(ngModel)]="value"
-  (ngModelChange)="valueChanged($event)"
-  class="currency-select">
-  @for (rate of allOptions(); track rate.code) {
+<select [id]="id()" [(ngModel)]="value" (ngModelChange)="valueChanged($event)" class="w-full">
+  @for (rate of options(); track rate.code) {
     <option [value]="rate.code">{{ rate.code }}</option>
   }
 </select>

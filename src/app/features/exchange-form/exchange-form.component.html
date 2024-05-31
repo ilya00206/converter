@@ -1,28 +1,36 @@
-<app-card>
-  <!-- <h2 card-header>Konwerter</h2> -->
-  <form card-body [formGroup]="conversionForm" (ngSubmit)="convertCurrency()">
-    <div>
-      <label for="amount">Kwota:</label>
-      <input type="number" id="amount" formControlName="amount" class="w-full" />
-    </div>
-    <div style="display: flex; justify-content: space-between; gap: 0.5rem">
+<div class="convertor">
+  <app-card>
+    <form card-body [formGroup]="form" (ngSubmit)="onConvert()">
       <div>
-        <label for="fromCurrency">Mam:</label>
-        <app-currency-select
-          [options]="exchangeRates()"
-          [id]="'fromCurrency'"
-          formControlName="fromCurrency" />
+        <label for="amount">Kwota</label>
+        <input type="number" id="amount" min="0" required formControlName="amount" class="w-full" />
       </div>
-      <button type="button" class="switch-currency-button">&harr;</button>
-      <div>
-        <label for="toCurrency">Chcę:</label>
-        <app-currency-select
-          [options]="exchangeRates()"
-          [id]="'toCurrency'"
-          formControlName="toCurrency" />
+      <div class="currency-form-row">
+        <div>
+          <label for="fromCurrency">Mam:</label>
+          <app-currency-select
+            [options]="exchangeRates()"
+            [id]="'fromCurrency'"
+            formControlName="fromCurrency" />
+        </div>
+        <app-switch-button (clicked)="switchCurrencies()" />
+        <div>
+          <label for="toCurrency">Chcę</label>
+          <app-currency-select
+            [options]="exchangeRates()"
+            [id]="'toCurrency'"
+            formControlName="toCurrency" />
+        </div>
       </div>
-    </div>
+      <div class="actions">
+        <button type="submit" class="primary w-full">Przelicz</button>
+      </div>
+    </form>
+  </app-card>
 
-    <button type="submit" class="primary w-full">Przelicz</button>
-  </form>
-</app-card>
+  @if (result(); as result) {
+    <section>
+      <app-conversion-result [result]="result" />
+    </section>
+  }
+</div>

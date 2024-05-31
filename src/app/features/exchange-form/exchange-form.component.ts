@@ -1,13 +1,30 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ExchangeRate } from '../../pages/currencies-page/rate.model';
 import { CardComponent } from '../../ui/card/card.component';
+import { SwitchIconComponent } from '../../ui/icons/switch-icon/switch-icon.component';
+import { ConversionResult } from '../conversion-result/converion-result.model';
+import { ConversionResultComponent } from '../conversion-result/conversion-result.component';
 import { CurrencySelectComponent } from '../currency-select/currency-select.component';
+import { PLN_CURRENCY } from '../currency-select/pln-currency';
+import { SwitchButtonComponent } from '../switch-button/switch-button.component';
+
+type ConverterData = {
+  amount: number;
+  fromCurrency: string;
+  toCurrency: string;
+};
 
 @Component({
   selector: 'app-exchange-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CardComponent, CurrencySelectComponent],
+  imports: [
+    ReactiveFormsModule,
+    CardComponent,
+    CurrencySelectComponent,
+    SwitchButtonComponent,
+    ConversionResultComponent,
+  ],
   templateUrl: './exchange-form.component.html',
   styleUrl: './exchange-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,24 +32,46 @@ import { CurrencySelectComponent } from '../currency-select/currency-select.comp
 export class ExchangeFormComponent {
   private readonly fb = inject(FormBuilder);
 
-  readonly exchangeRates = input<ExchangeRate[]>([]);
+  readonly exchangeRates = input([], {
+    transform: (v: ExchangeRate[]) => [PLN_CURRENCY, ...v],
+  });
 
-  readonly conversionForm = this.fb.nonNullable.group({
+  readonly form = this.fb.nonNullable.group({
     amount: 1,
     fromCurrency: 'PLN',
     toCurrency: 'EUR',
   });
+
+  readonly result = signal<ConversionResult | undefined>(undefined);
+
   constructor() {
-    this.conversionForm.valueChanges.subscribe(console.log);
+    effect(
+      () => {
+        this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue()));
+      },
+      { allowSignalWrites: true }
+    );
   }
-  convertCurrency(): number {
-    const amount = this.conversionForm.controls.amount.getRawValue();
-    const fromCurrency = this.conversionForm.controls.fromCurrency.getRawValue();
-    const toCurrency = this.conversionForm.controls.toCurrency.getRawValue();
 
-    const fromRate = this.exchangeRates().find((rate) => rate.code === fromCurrency)?.mid!;
-    const toRate = this.exchangeRates().find((rate) => rate.code === toCurrency)?.mid!;
+  private convertCurrency(
+    exchangeRates: ExchangeRate[],
+    converterData: ConverterData
+  ): ConversionResult {
+    const { toCurrency, fromCurrency, amount } = converterData;
+    const fromRate = exchangeRates.find((rate) => rate.code === fromCurrency)?.mid!;
+    const toRate = exchangeRates.find((rate) => rate.code === toCurrency)?.mid!;
+    const result = +((fromRate / toRate) * amount).toFixed(2);
+    return { toCurrency, fromCurrency, amount, result };
+  }
+  onConvert() {
+    this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue()));
+  }
+  switchCurrencies(): void {
+    const { toCurrency, fromCurrency } = this.form.getRawValue();
 
-    return (amount / fromRate) * toRate;
+    this.form.patchValue({
+      fromCurrency: toCurrency,
+      toCurrency: fromCurrency,
+    });
   }
 }

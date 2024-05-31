@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, Component, computed, forwardRef, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ExchangeRate } from '../../pages/currencies-page/rate.model';
 import { PLN_CURRENCY } from './pln-currency';
+
+type OnChangeFn = (value: string) => void;
+type OnTouchedFn = () => void;
 
 @Component({
   selector: 'app-currency-select',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './currency-select.component.html',
-  styleUrl: './currency-select.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -16,24 +19,21 @@ import { PLN_CURRENCY } from './pln-currency';
       multi: true,
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrencySelectComponent implements ControlValueAccessor {
   readonly options = input.required<ExchangeRate[]>();
   readonly id = input.required<string>();
 
-  readonly allOptions = computed(() => [PLN_CURRENCY, ...this.options()]);
+  readonly value = signal('');
 
-  disabled = false;
-  value!: string;
-  onChange: any;
-  onTouched!: () => void;
+  onChange: OnChangeFn = () => {};
+  onTouched: OnTouchedFn = () => {};
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: OnChangeFn): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: OnTouchedFn): void {
     this.onTouched = fn;
   }
 
@@ -41,15 +41,11 @@ export class CurrencySelectComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
+  writeValue(obj: string): void {
+    this.value.set(obj);
   }
 
-  writeValue(obj: any): void {
-    this.value = obj;
-  }
-
-  valueChanged(value: string) {
+  valueChanged(value: string): void {
     this.onChange(value);
     this.writeValue(value);
   }

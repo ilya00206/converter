@@ -1,10 +1,13 @@
 button {
   font-family: inherit;
+  height: 40px;
   border: none;
   background: transparent;
   border-radius: 6px;
   font-size: 1rem;
   line-height: 1.5;
+  border: 1px solid transparent;
+  color: var(--foreground-color);
   cursor: pointer;
 
   &.primary {
@@ -14,16 +17,23 @@ button {
     background-color: var(--foreground-color);
     transition: background-color 0.2s ease-in-out;
 
-    &:hover {
-      background-color: #333;
-    }
-    &:active {
-      background-color: #eee;
-    }
+    &:hover,
+    &:active,
     &:focus {
-      outline: 2px solid #333;
-      outline-offset: 2px;
-      background-color: #333;
+      background-color: var(--focus-color);
     }
+  }
+
+  &.icon {
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: var(--focus-color);
+    }
+  }
+
+  &:focus {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
   }
 }

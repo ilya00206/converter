@@ -2,7 +2,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 99;
-  background-color: #ffff;
+  background-color: var(--background-color);
   border-bottom: 1px solid var(--border-color);
 }
 .header-content {
@@ -15,12 +15,17 @@ header {
   min-height: 50px;
 }
 
-.header-logo {
-  display: flex;
-}
 .header-date-search {
   display: flex;
   gap: 0.5rem;
-
   flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    justify-content: center;
+  }
+  .header-date-search * {
+    // width: 100%;
+  }
 }

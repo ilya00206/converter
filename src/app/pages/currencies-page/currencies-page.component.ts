@@ -1,9 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { map, skip, startWith, switchMap } from 'rxjs';
 import { ExchangeFormComponent } from '../../features/exchange-form/exchange-form.component';
 import { ExchangeRatesListComponent } from '../../features/rates-list/rates-list.component';
-import { formatDate } from '@angular/common';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { skip, startWith, switchMap, map } from 'rxjs';
 import { CurrencyService } from './currency.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { CurrencyService } from './currency.service';
   imports: [ExchangeFormComponent, ExchangeRatesListComponent],
   templateUrl: './currencies-page.component.html',
   styleUrl: './currencies-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrenciesPageComponent {
   private readonly currencyService = inject(CurrencyService);

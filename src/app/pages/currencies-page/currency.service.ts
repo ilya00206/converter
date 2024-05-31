@@ -7,11 +7,13 @@ import { NBPTableResponse } from './rate.model';
   providedIn: 'root',
 })
 export class CurrencyService {
-  private readonly apiUrl = 'https://api.nbp.pl/api/exchangerates/tables/A/';
+  private readonly apiUrl = 'https://api.nbp.pl/api/exchangerates';
   private readonly http = inject(HttpClient);
 
   getExchangeRates(date?: string): Observable<NBPTableResponse> {
-    const url = date ? `${this.apiUrl}${date}` : this.apiUrl;
+    const urlDate = date ?? '';
+    const url = `${this.apiUrl}/tables/A/${urlDate}`;
+
     return this.http.get<NBPTableResponse[]>(url).pipe(
       map((resp) => resp[0]),
       catchError(() => of())
