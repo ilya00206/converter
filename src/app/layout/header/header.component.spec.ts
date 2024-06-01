@@ -44,7 +44,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should render the app title', () => {
-    const titleElement = fixture.debugElement.query(By.css('h1.app-title'));
+    const titleElement = fixture.debugElement.query(By.css('app-name'));
     expect(titleElement.nativeElement.textContent).toBeTruthy();
   });
 

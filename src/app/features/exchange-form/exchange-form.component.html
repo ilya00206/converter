@@ -1,5 +1,6 @@
 <div class="converter">
   <app-card>
+    <h1 card-header>Kalkulator walutowy</h1>
     <form card-body [formGroup]="form" (ngSubmit)="onConvert()">
       <app-form-control [id]="'amount'" [label]="'Kwota'">
         <input
