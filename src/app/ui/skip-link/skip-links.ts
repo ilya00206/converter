@@ -5,7 +5,7 @@ export interface SkipLink {
 
 export const CONTENT_SKIP_LINK: SkipLink = {
   id: 'content',
-  label: 'Przejdź do zawartości',
+  label: 'Przejdź do treści',
 };
 
 export const SKIP_LINKS: SkipLink[] = [CONTENT_SKIP_LINK];

@@ -1,17 +1,16 @@
 import { Injectable, signal } from '@angular/core';
-import { getFormattedDate } from '../utils/date';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DateStore {
-  private readonly _date = signal(getFormattedDate(new Date()));
+  private readonly _date = signal<string | undefined>(undefined);
 
   get date() {
     return this._date.asReadonly();
   }
 
-  setDate(newDate: string) {
+  setDate(newDate: string | undefined) {
     this._date.set(newDate);
   }
 }

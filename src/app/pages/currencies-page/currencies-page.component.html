@@ -1,10 +1,16 @@
 <div class="page">
   <!--change to div? TODO:-->
-  <section class="exchange-form-section">
-    <app-exchange-form [exchangeRates]="exchangeRates()" />
-  </section>
+  @if (response(); as response) {
+    <section class="rates-list-section">
+      <app-rates-list [response]="response" />
+    </section>
 
-  <section class="rates-list-section">
-    <app-rates-list [response]="response()" />
-  </section>
+    <section class="exchange-form-section">
+      <app-exchange-form [exchangeRates]="exchangeRates()" />
+    </section>
+  } @else {
+    <section class="no-data-section">
+      <app-no-data-found />
+    </section>
+  }
 </div>

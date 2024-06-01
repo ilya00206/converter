@@ -2,11 +2,14 @@
   display: flex;
   gap: 1rem;
 }
+.no-data-section {
+  flex-grow: 1;
+}
 .exchange-form-section {
-  flex: 1 1 30%;
+  flex-basis: 30%;
 }
 .rates-list-section {
-  flex: 1 1 70%;
+  flex-basis: 70%;
 }
 
 @media (max-width: 600px) {

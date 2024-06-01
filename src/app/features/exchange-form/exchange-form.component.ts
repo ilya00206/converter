@@ -56,15 +56,18 @@ export class ExchangeFormComponent {
     exchangeRates: ExchangeRate[],
     converterData: ConverterData
   ): ConversionResult {
-    const { toCurrency, fromCurrency, amount } = converterData;
+    const { toCurrency, fromCurrency } = converterData;
+    const amount = converterData.amount ?? 0;
     const fromRate = exchangeRates.find((rate) => rate.code === fromCurrency)?.mid!;
     const toRate = exchangeRates.find((rate) => rate.code === toCurrency)?.mid!;
     const result = +((fromRate / toRate) * amount).toFixed(2);
     return { toCurrency, fromCurrency, amount, result };
   }
+
   onConvert() {
     this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue()));
   }
+
   switchCurrencies(): void {
     const { toCurrency, fromCurrency } = this.form.getRawValue();
 

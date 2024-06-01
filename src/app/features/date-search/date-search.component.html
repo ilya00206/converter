@@ -1,10 +1,13 @@
-<form class="date-search" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="date-search" (ngSubmit)="onSubmit()">
   <input
-    type="date"
     id="date"
+    type="date"
     name="date"
     aria-label="Data"
-    formControlName="date"
-    [max]="maxDate" />
-  <button type="submit" class="primary">Szukaj</button>
+    title="Data"
+    [max]="maxDate"
+    [ngModel]="date()"
+    [ngModelOptions]="{ standalone: true }"
+    (ngModelChange)="onDateChange($event)" />
+  <button type="submit" class="primary">Zatwierdź datę</button>
 </form>
