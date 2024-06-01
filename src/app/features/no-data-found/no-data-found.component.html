@@ -1,7 +1,7 @@
 <app-card>
-  <h2 card-header>Brak danych</h2>
+  <h2 card-header>Nie znaleziono danych {{ dateLabel() }}</h2>
   <div card-body>
-    <p>Brak danych{{ dateLabel() }}, możesz pobrać aktualnie obowiązujące dane.</p>
+    <p>Możesz pobrać aktualnie obowiązujące dane, klikając przycisk poniżej.</p>
     <button type="button" class="primary" (click)="onGetLatestData()">Pobierz aktualne dane</button>
   </div>
 </app-card>

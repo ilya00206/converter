@@ -13,14 +13,14 @@ export class CurrencyService {
   private readonly cache = new Map<string, NBPTableResponse | undefined>();
 
   getLatestExchangeRates(): Observable<NBPTableResponse | undefined> {
-    console.log("LATEST DATA")
+    console.log('LATEST DATA');
     const url = `${this.apiUrl}/tables/A/`;
+
     return this.http.get<NBPTableResponse[]>(url).pipe(map(this.mapResponse));
   }
 
   getExchangeRatesFromDate(date: string): Observable<NBPTableResponse | undefined> {
-
-    console.log("ARCHIVE DATA")
+    console.log('ARCHIVE DATA');
     const url = `${this.apiUrl}/tables/A/${date}`;
 
     const cached = this.cache.has(date);

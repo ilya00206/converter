@@ -5,7 +5,7 @@ import { CardComponent } from '../../ui/card/card.component';
 import { ConversionResult } from '../conversion-result/converion-result.model';
 import { ConversionResultComponent } from '../conversion-result/conversion-result.component';
 import { CurrencySelectComponent } from '../currency-select/currency-select.component';
-import { PLN_CURRENCY } from '../currency-select/pln-currency';
+import { PLN_CURRENCY } from './pln-currency';
 import { SwitchButtonComponent } from '../switch-button/switch-button.component';
 
 interface ConverterData {
@@ -45,9 +45,7 @@ export class ExchangeFormComponent {
 
   constructor() {
     effect(
-      () => {
-        this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue()));
-      },
+      () => this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue())),
       { allowSignalWrites: true }
     );
   }

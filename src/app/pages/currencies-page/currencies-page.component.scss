@@ -1,4 +1,4 @@
-.page {
+.currencies-page {
   display: flex;
   gap: 1rem;
 }
@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 600px) {
-  .page {
+  .currencies-page {
     flex-direction: column;
   }
   .exchange-form-section,

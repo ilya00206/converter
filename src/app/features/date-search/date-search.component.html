@@ -6,8 +6,7 @@
     aria-label="Data"
     title="Data"
     [max]="maxDate"
-    [ngModel]="date()"
     [ngModelOptions]="{ standalone: true }"
-    (ngModelChange)="onDateChange($event)" />
+    [(ngModel)]="selectedDate" />
   <button type="submit" class="primary">Zatwierdź datę</button>
 </form>
