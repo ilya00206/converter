@@ -25,7 +25,7 @@ export class CurrenciesPageComponent {
   readonly fetchRatesOnDateChange$: Observable<NBPTableResponse | undefined> = toObservable(
     this.date
   ).pipe(
-    startWith('2024-06-01'),
+    startWith(undefined),
     pairwise(),
     switchMap(([prevDate, currDate]) => {
       console.log(prevDate, currDate);

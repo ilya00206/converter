@@ -1,12 +1,12 @@
 <div class="page">
   <!--change to div? TODO:-->
   @if (response(); as response) {
-    <section class="rates-list-section">
-      <app-rates-list [response]="response" />
-    </section>
-
     <section class="exchange-form-section">
       <app-exchange-form [exchangeRates]="exchangeRates()" />
+    </section>
+
+    <section class="rates-list-section">
+      <app-rates-list [response]="response" />
     </section>
   } @else {
     <section class="no-data-section">
