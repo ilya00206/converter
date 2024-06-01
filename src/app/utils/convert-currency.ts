@@ -4,7 +4,12 @@ export function convertCurrency(
   exchangeForm: ExchangeForm
 ): ConversionResult {
   const { toCurrency, fromCurrency } = exchangeForm;
-  const amount = exchangeForm.amount ?? 0;
+
+  let amount = (exchangeForm.amount ?? 0) as number | string;
+  if (typeof amount === 'string' && amount.includes(',')) {
+    amount = amount.replace(',', '.');
+  }
+  amount = Number(amount);
 
   const fromRate = exchangeRates.find((rate) => rate.code === fromCurrency)?.mid;
   const toRate = exchangeRates.find((rate) => rate.code === toCurrency)?.mid;
