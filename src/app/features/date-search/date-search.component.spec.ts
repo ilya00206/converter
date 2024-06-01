@@ -8,10 +8,9 @@ describe('DateSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DateSearchComponent]
-    })
-    .compileComponents();
-    
+      imports: [DateSearchComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DateSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

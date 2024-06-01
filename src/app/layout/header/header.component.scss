@@ -7,7 +7,7 @@ header {
 }
 .header-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
@@ -15,8 +15,8 @@ header {
   min-height: 50px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 768px) {
   .header-content {
-    justify-content: center;
+    justify-content: space-between;
   }
 }

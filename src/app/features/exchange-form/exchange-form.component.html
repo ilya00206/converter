@@ -1,27 +1,34 @@
-<div class="convertor">
+<div class="converter">
   <app-card>
     <form card-body [formGroup]="form" (ngSubmit)="onConvert()">
-      <div>
-        <label for="amount">Kwota</label>
-        <input type="number" id="amount" min="0" required formControlName="amount" class="w-full" />
-      </div>
+      <app-form-control [id]="'amount'" [label]="'Kwota'">
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          min="0"
+          formControlName="amount"
+          class="w-full" />
+      </app-form-control>
+
       <div class="currency-form-row">
-        <div>
-          <label for="fromCurrency">Mam</label>
+        <app-form-control [id]="'fromCurrency'" [label]="'Mam'">
           <app-currency-select
             formControlName="fromCurrency"
             [options]="exchangeRates()"
             [id]="'fromCurrency'" />
-        </div>
-        <app-switch-button (clicked)="switchCurrencies()" />
-        <div>
-          <label for="toCurrency">Chcę</label>
+        </app-form-control>
+
+        <app-switch-button (clicked)="onSwitchCurrencies()" />
+
+        <app-form-control [id]="'toCurrency'" [label]="'Chcę'">
           <app-currency-select
             formControlName="toCurrency"
             [options]="exchangeRates()"
             [id]="'toCurrency'" />
-        </div>
+        </app-form-control>
       </div>
+
       <div class="actions">
         <button type="submit" class="primary w-full">Przelicz</button>
       </div>

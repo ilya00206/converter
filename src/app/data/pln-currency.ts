@@ -1,4 +1,4 @@
-import { ExchangeRate } from '../../pages/currencies-page/rate.model';
+import { ExchangeRate } from '@models/index';
 
 export const PLN_CURRENCY: ExchangeRate = {
   currency: 'Polski złoty',

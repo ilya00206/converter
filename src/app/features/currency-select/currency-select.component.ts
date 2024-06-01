@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, forwardRef, input, signal } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ExchangeRate } from '../../pages/currencies-page/rate.model';
+import { Component, ChangeDetectionStrategy, forwardRef, input, signal } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ExchangeRate } from '@models/index';
 
 type OnChangeFn = (value: string) => void;
 type OnTouchedFn = () => void;

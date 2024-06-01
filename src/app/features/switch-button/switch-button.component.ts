@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
-import { SwitchIconComponent } from '../../ui/icons/switch-icon/switch-icon.component';
+import { Component, ChangeDetectionStrategy, output } from '@angular/core';
+import { SwitchIconComponent } from '@ui/icons/switch-icon/switch-icon.component';
 
 @Component({
   selector: 'app-switch-button',

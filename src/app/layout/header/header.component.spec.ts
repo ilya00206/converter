@@ -1,13 +1,12 @@
+import { registerLocaleData } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { SkipLinkComponent } from '@ui/skip-link/skip-link.component';
+import { SKIP_LINKS } from '@ui/skip-link/skip-links';
 import { HeaderComponent } from './header.component';
-
-import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
-import { LOCALE_ID } from '@angular/core';
-import { SkipLinkComponent } from '../../ui/skip-link/skip-link.component';
-import { SKIP_LINKS } from '../../ui/skip-link/skip-links';
 
 registerLocaleData(localePl);
 describe('HeaderComponent', () => {

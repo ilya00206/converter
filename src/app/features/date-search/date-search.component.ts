@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateStore } from '../../store/date.service';
-import { getFormattedDate } from '../../utils/date';
+import { DateStore } from '@store/date.service';
+import { getFormattedDate } from '@utils/date';
 
 @Component({
   selector: 'app-date-search',

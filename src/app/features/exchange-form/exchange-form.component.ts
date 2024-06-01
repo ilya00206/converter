@@ -1,18 +1,13 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ExchangeRate } from '../../pages/currencies-page/rate.model';
-import { CardComponent } from '../../ui/card/card.component';
-import { ConversionResult } from '../conversion-result/converion-result.model';
-import { ConversionResultComponent } from '../conversion-result/conversion-result.component';
-import { CurrencySelectComponent } from '../currency-select/currency-select.component';
-import { PLN_CURRENCY } from './pln-currency';
-import { SwitchButtonComponent } from '../switch-button/switch-button.component';
-
-interface ConverterData {
-  amount: number;
-  fromCurrency: string;
-  toCurrency: string;
-}
+import { Component, ChangeDetectionStrategy, input, inject, signal, effect } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { PLN_CURRENCY } from '@data/pln-currency';
+import { ConversionResultComponent } from '@features/conversion-result/conversion-result.component';
+import { CurrencySelectComponent } from '@features/currency-select/currency-select.component';
+import { SwitchButtonComponent } from '@features/switch-button/switch-button.component';
+import { ConversionResult, ExchangeForm, ExchangeRate } from '@models/index';
+import { CardComponent } from '@ui/card/card.component';
+import { FormControlComponent } from '@ui/form-control/form-control.component';
+import { convertCurrency } from '@utils/convert-currency';
 
 @Component({
   selector: 'app-exchange-form',
@@ -23,19 +18,18 @@ interface ConverterData {
     CurrencySelectComponent,
     SwitchButtonComponent,
     ConversionResultComponent,
+    FormControlComponent,
   ],
   templateUrl: './exchange-form.component.html',
   styleUrl: './exchange-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExchangeFormComponent {
-  private readonly fb = inject(FormBuilder);
-
   readonly exchangeRates = input([], {
     transform: (v: ExchangeRate[]) => [PLN_CURRENCY, ...v],
   });
 
-  readonly form = this.fb.nonNullable.group({
+  readonly form = inject(FormBuilder).nonNullable.group({
     amount: 1,
     fromCurrency: 'PLN',
     toCurrency: 'EUR',
@@ -52,21 +46,16 @@ export class ExchangeFormComponent {
 
   private convertCurrency(
     exchangeRates: ExchangeRate[],
-    converterData: ConverterData
+    exchangeForm: ExchangeForm
   ): ConversionResult {
-    const { toCurrency, fromCurrency } = converterData;
-    const amount = converterData.amount ?? 0;
-    const fromRate = exchangeRates.find((rate) => rate.code === fromCurrency)?.mid!;
-    const toRate = exchangeRates.find((rate) => rate.code === toCurrency)?.mid!;
-    const result = +((fromRate / toRate) * amount).toFixed(2);
-    return { toCurrency, fromCurrency, amount, result };
+    return convertCurrency(exchangeRates, exchangeForm);
   }
 
-  onConvert() {
+  onConvert(): void {
     this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue()));
   }
 
-  switchCurrencies(): void {
+  onSwitchCurrencies(): void {
     const { toCurrency, fromCurrency } = this.form.getRawValue();
 
     this.form.patchValue({

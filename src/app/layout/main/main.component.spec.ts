@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MainComponent } from './main.component';
 import { By } from '@angular/platform-browser';
-import { CONTENT_SKIP_LINK } from '../../ui/skip-link/skip-links';
+import { CONTENT_SKIP_LINK } from '@ui/skip-link/skip-links';
+import { MainComponent } from './main.component';
 
 describe('MainComponent', () => {
   let component: MainComponent;

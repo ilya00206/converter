@@ -1,5 +1,4 @@
 <div class="currencies-page">
-  <!--change to div? TODO:-->
   @if (response(); as response) {
     <section class="exchange-form-section">
       <app-exchange-form [exchangeRates]="exchangeRates()" />
@@ -9,10 +8,8 @@
       <app-rates-list [response]="response" />
     </section>
   } @else {
-    @defer {
-      <section class="no-data-section">
-        <app-no-data-found />
-      </section>
-    }
+    <section class="no-data-section">
+      <app-no-data-found />
+    </section>
   }
 </div>

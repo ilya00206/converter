@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CONTENT_SKIP_LINK } from '../../ui/skip-link/skip-links';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CONTENT_SKIP_LINK } from '@ui/skip-link/skip-links';
 
 @Component({
   selector: 'app-main',

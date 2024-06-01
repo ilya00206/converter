@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SkipLinkComponent } from '../../ui/skip-link/skip-link.component';
-import { SKIP_LINKS } from '../../ui/skip-link/skip-links';
-import { DateSearchComponent } from '../../features/date-search/date-search.component';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { DateSearchComponent } from '@features/date-search/date-search.component';
+import { SkipLinkComponent } from '@ui/skip-link/skip-link.component';
+import { SKIP_LINKS } from '@ui/skip-link/skip-links';
 
 @Component({
   selector: 'app-header',

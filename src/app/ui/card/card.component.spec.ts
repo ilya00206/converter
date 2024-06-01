@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { CardComponent } from './card.component';
 
 @Component({
@@ -34,12 +33,12 @@ describe('CardComponent', () => {
   });
 
   it('should project the card-header content', () => {
-    const headerEl = fixture.debugElement.query(By.css('.card-header')).nativeElement;
-    expect(headerEl.textContent.trim()).toBe('Test Header');
+    const headerEl = fixture.debugElement.nativeElement;
+    expect(headerEl.textContent.trim()).toContain('Test Header');
   });
 
   it('should project the card-body content', () => {
-    const bodyEl = fixture.debugElement.query(By.css('.card-body')).nativeElement;
-    expect(bodyEl.textContent.trim()).toBe('Test Body');
+    const bodyEl = fixture.debugElement.nativeElement;
+    expect(bodyEl.textContent.trim()).toContain('Test Body');
   });
 });

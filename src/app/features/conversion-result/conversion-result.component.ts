@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CardComponent } from '../../ui/card/card.component';
-import { ConversionResult } from './converion-result.model';
 import { DecimalPipe } from '@angular/common';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { ConversionResult } from '@models/index';
+import { CardComponent } from '@ui/card/card.component';
 
 @Component({
   selector: 'app-conversion-result',

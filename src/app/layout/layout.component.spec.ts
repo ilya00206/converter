@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LayoutComponent } from './layout.component';
-
 import { By } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { LayoutComponent } from './layout.component';
 import { MainComponent } from './main/main.component';
 
 describe('LayoutComponent', () => {
