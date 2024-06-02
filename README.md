@@ -39,7 +39,7 @@ Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze
 - Są skonfigurowane `eslint`, `prettier`
 - Aplikacja została przetestowana ręcznie na przeglądarkach Chrome, Edge, Firefox oraz Safari na urządzeniu iOS
   
-# Struktura projektu
+## Struktura projektu
 
 ```                    
 public/                 publiczne pliki
