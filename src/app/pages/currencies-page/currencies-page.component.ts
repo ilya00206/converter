@@ -20,12 +20,11 @@ export class CurrenciesPageComponent {
   private readonly currencyService = inject(CurrencyService);
   private readonly store = inject(DateStore);
 
-  readonly date = this.store.date;
   /**
    * Najperw pobierz wyłącznie aktualne dane, po zmianie daty pobierz dane wyłącznie z wybranego dnia
    */
   readonly fetchRatesOnDateChange$: Observable<NBPTableResponse | undefined> = toObservable(
-    this.date
+    this.store.date
   ).pipe(
     startWith(undefined),
     pairwise(),
