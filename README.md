@@ -33,7 +33,7 @@ Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze
 - Aplikacja nie korzysta z żadnych gotowych bibliotek zewnętrznych
 - Są zastosowane techniki optymalizacyjne, aplikacja posiada same **100** w `lighthouse`
 - `Zone.js` został usunięty z projektu
-- Pokrycie kodu testami na poziomie powyżej **80%**
+- Pokrycie kodu testami na poziomie **100%**
 - Aplikacja wspiera motyw jasny i ciemny, w zależności od preferencji urządzenia
 - Aplikacja korzysta z `experimental` i `dev preview` API
 - Są skonfigurowane `eslint`, `prettier`
@@ -75,3 +75,13 @@ Ujemne kwoty można by było zablokować, ale znak minusa nie wpływa na poprawn
 
 - npm install
 - npm start
+
+## Raporty
+
+### Coverage
+
+![coverage](reports/coverage-report.jpg)
+
+### Lighthouse
+
+![lighthouse](reports/lighthouse-report.jpg)
