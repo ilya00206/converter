@@ -38,6 +38,23 @@ Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze
 - Aplikacja korzysta z `experimental` i `dev preview` API
 - Są skonfigurowane `eslint`, `prettier`
 - Aplikacja została przetestowana ręcznie na przeglądarkach Chrome, Edge, Firefox oraz Safari na urządzeniu iOS
+  
+# Struktura projektu
+
+```                    
+public/                 publiczne pliki
+reports/                wygenerowane raporty
+src/                         
+|- app/                      
+|  |- data/             dane statyczne
+|  |- features/         komponenty z logiką
+|  |- layout/           układy stron
+|  |- models/           definicje modeli
+|  |- pages/            strony
+|  |- store/            stan globalny
+|  |- ui/               reużywalne komponenty
+|  |- utils/            funkcje pomocnicze
+```
 
 ## FAQ
 
