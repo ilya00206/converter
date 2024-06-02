@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { NBPTableResponse } from '@models/index';
-import { Observable, map, of, catchError } from 'rxjs';
+import { Observable, map, of, catchError, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +28,11 @@ export class CurrencyService {
 
     return this.http.get<NBPTableResponse[]>(url).pipe(
       map(this.mapResponse),
-      catchError(() => {
-        this.cache.set(date, undefined);
-        return of(undefined);
-      })
+      tap({
+        next: (resp) => this.cache.set(date, resp),
+        error: () => this.cache.set(date, undefined),
+      }),
+      catchError(() => of(undefined))
     );
   }
 

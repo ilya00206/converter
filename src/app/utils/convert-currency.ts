@@ -13,5 +13,6 @@ export function convertCurrency(
   if (fromRate && toRate) {
     result = Number(((fromRate / toRate) * amount).toFixed(2));
   }
+
   return { toCurrency, fromCurrency, amount, result };
 }

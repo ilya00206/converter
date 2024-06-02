@@ -4,7 +4,7 @@ import { FormControlComponent } from './form-control.component';
 
 @Component({
   template: `
-    <app-form-control id="testId" label="Test Label">
+    <app-form-control [id]="'testId'" [label]="'Test Label'">
       <input id="testId" />
     </app-form-control>
   `,
@@ -15,47 +15,40 @@ import { FormControlComponent } from './form-control.component';
 class TestHostComponent {}
 
 describe('FormControlComponent', () => {
-  let component: FormControlComponent;
-  let fixture: ComponentFixture<FormControlComponent>;
+  let component: TestHostComponent;
   let hostFixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TestHostComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FormControlComponent);
-    component = fixture.componentInstance;
     hostFixture = TestBed.createComponent(TestHostComponent);
-    hostFixture.detectChanges();
+    component = hostFixture.componentInstance;
+    await hostFixture.whenStable();
   });
 
-  it('should create the FormControlComponent', () => {
+  it('should create the TestHostComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should project content correctly', () => {
+    const inputElement = hostFixture.nativeElement.querySelector('input');
+    expect(inputElement).toBeTruthy();
+    expect(inputElement?.id).toBe('testId');
+  });
+
   it('should display the label correctly', () => {
-    const compiled = hostFixture.nativeElement as HTMLElement;
-    const labelElement = compiled.querySelector('label');
+    const labelElement = hostFixture.nativeElement.querySelector('label');
     expect(labelElement).toBeTruthy();
     expect(labelElement?.textContent).toBe('Test Label');
   });
 
   it('should bind the label to the input id', () => {
-    const compiled = hostFixture.nativeElement as HTMLElement;
-    const labelElement = compiled.querySelector('label');
-    const inputElement = compiled.querySelector('input');
+    const labelElement = hostFixture.nativeElement.querySelector('label');
+    const inputElement = hostFixture.nativeElement.querySelector('input');
     expect(labelElement).toBeTruthy();
     expect(inputElement).toBeTruthy();
     expect(labelElement?.getAttribute('for')).toBe(inputElement?.id);
-  });
-
-  it('should project content correctly', () => {
-    const compiled = hostFixture.nativeElement as HTMLElement;
-    const inputElement = compiled.querySelector('input');
-    expect(inputElement).toBeTruthy();
-    expect(inputElement?.id).toBe('testId');
   });
 });

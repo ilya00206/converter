@@ -32,7 +32,7 @@ Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze
 - Aplikacja jest napisana w najnowszych technologiach
 - Aplikacja nie korzysta z żadnych gotowych bibliotek zewnętrznych
 - Są zastosowane techniki optymalizacyjne, aplikacja posiada same **100** w `lighthouse`
-- `Zone.js` został usunięty z zależności projektu
+- `Zone.js` został usunięty z projektu
 - Pokrycie kodu testami na poziomie powyżej **80%**
 - Aplikacja wspiera motyw jasny i ciemny, w zależności od preferencji urządzenia
 - Aplikacja korzysta z `experimental` i `dev preview` API

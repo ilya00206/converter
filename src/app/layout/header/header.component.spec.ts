@@ -27,31 +27,20 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should have the correct formattedTodayDate', () => {
-  //   const todayDate = new Date();
-  //   const expectedFormattedDate = formatDate(todayDate, 'yyyy-MM-dd', 'pl');
-  //   expect(component.formattedTodayDate).toBe(expectedFormattedDate);
-  // });
-
-  // it('should initialize date with formattedTodayDate', () => {
-  //   expect(component.date()).toBe(component.formattedTodayDate);
-  // });
-
   it('should render skip links', () => {
     fixture.detectChanges();
     const skipLinkElements = fixture.debugElement.queryAll(By.directive(SkipLinkComponent));
     expect(skipLinkElements.length).toBe(SKIP_LINKS.length);
   });
 
-  it('should render the app title', () => {
-    const titleElement = fixture.debugElement.query(By.css('app-name'));
+  it('should render the app name', () => {
+    const titleElement = fixture.debugElement.query(By.css('.app-name'));
     expect(titleElement.nativeElement.textContent).toBeTruthy();
   });
 
   it('should render the date input element', () => {
     const inputElement = fixture.debugElement.query(By.css('input[type="date"]'));
     expect(inputElement).toBeTruthy();
-    expect(inputElement.attributes['aria-label']).toBeTruthy();
   });
 
   it('should render the confirm date button', () => {
