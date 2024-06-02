@@ -14,6 +14,8 @@ describe('MainComponent', () => {
 
     fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
+
+    await fixture.whenStable();
   });
 
   it('should create the component', () => {
@@ -26,7 +28,6 @@ describe('MainComponent', () => {
   });
 
   it('should render a div with the contentSkipLinkId', () => {
-    fixture.detectChanges();
     const divElement = fixture.debugElement.query(By.css(`div#${component.contentSkipLinkId}`));
     expect(divElement).toBeTruthy();
   });

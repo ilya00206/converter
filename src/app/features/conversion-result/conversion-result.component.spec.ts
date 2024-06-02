@@ -11,7 +11,6 @@ describe('ConversionResultComponent', () => {
 
     hostFixture = TestBed.createComponent(ConversionResultComponent);
     hostFixture.componentRef.setInput('result', {});
-    hostFixture.detectChanges();
   });
 
   it('should create the ConversionResultComponent', () => {
@@ -19,14 +18,12 @@ describe('ConversionResultComponent', () => {
   });
 
   it('should display the conversion result correctly', () => {
-    const compiled = hostFixture.nativeElement as HTMLElement;
-    const conversionResultElement = compiled.querySelector('.conversion-result');
+    const conversionResultElement = hostFixture.nativeElement.querySelector('.conversion-result');
     expect(conversionResultElement).toBeTruthy();
   });
 
   it('should display the header correctly', () => {
-    const compiled = hostFixture.nativeElement as HTMLElement;
-    const headerElement = compiled.querySelector('h2[card-header]');
+    const headerElement = hostFixture.nativeElement.querySelector('h2[card-header]');
     expect(headerElement).toBeTruthy();
   });
 });

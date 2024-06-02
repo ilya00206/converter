@@ -1,93 +1,87 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { ExchangeFormComponent } from '@features/exchange-form/exchange-form.component';
-import { NoDataFoundComponent } from '@features/no-data-found/no-data-found.component';
-import { RatesListComponent } from '@features/rates-list/rates-list.component';
-
+import { NBPTableResponse } from '@models/nbp-table-response';
 import { DateStore } from '@store/date.service';
 import { of } from 'rxjs';
 import { CurrenciesPageComponent } from './currencies-page.component';
 import { CurrencyService } from './currency.service';
-import { NBPTableResponse } from '@models/index';
 
-xdescribe('CurrenciesPageComponent', () => {
+describe('CurrenciesPageComponent', () => {
   let component: CurrenciesPageComponent;
   let fixture: ComponentFixture<CurrenciesPageComponent>;
-  let currencyServiceMock: any;
-  let dateStoreMock: any;
+  let currencyServiceSpy: jasmine.SpyObj<CurrencyService>;
+  let dateStore: DateStore;
 
+  const mockRates = [{ currency: 'USD', mid: 3.8, code: 'USD' }];
   const mockResponse: NBPTableResponse = {
-    table: 'A',
-    no: '123/A/NBP/2023',
-    effectiveDate: '2023-01-01',
-    rates: [
-      { currency: 'Dollar', code: 'USD', mid: 3.8 },
-      { currency: 'Euro', code: 'EUR', mid: 4.5 },
-    ],
+    effectiveDate: '2024-06-01',
+    rates: mockRates,
+    table: '',
+    no: '',
   };
 
   beforeEach(async () => {
-    currencyServiceMock = {
-      getLatestExchangeRates: jasmine
-        .createSpy('getLatestExchangeRates')
-        .and.returnValue(of(mockResponse)),
-      getExchangeRatesFromDate: jasmine
-        .createSpy('getExchangeRatesFromDate')
-        .and.returnValue(of(mockResponse)),
-    };
+    const currencyServiceMock = jasmine.createSpyObj('CurrencyService', [
+      'getLatestExchangeRates',
+      'getExchangeRatesFromDate',
+    ]);
 
-    dateStoreMock = {
-      date: of('2023-01-01'),
-      setDate: jasmine.createSpy('setDate'),
-    };
-
-    await TestBed.configureTestingModule({
-      imports: [
-        CurrenciesPageComponent,
-        ExchangeFormComponent,
-        RatesListComponent,
-        NoDataFoundComponent,
-      ],
-      providers: [
-        { provide: CurrencyService, useValue: currencyServiceMock },
-        { provide: DateStore, useValue: dateStoreMock },
-      ],
+    TestBed.configureTestingModule({
+      imports: [CurrenciesPageComponent],
+      providers: [{ provide: CurrencyService, useValue: currencyServiceMock }],
     }).compileComponents();
 
+    currencyServiceSpy = TestBed.inject(CurrencyService) as jasmine.SpyObj<CurrencyService>;
+
+    dateStore = TestBed.inject(DateStore);
     fixture = TestBed.createComponent(CurrenciesPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getLatestExchangeRates on initialization', () => {
-    expect(currencyServiceMock.getLatestExchangeRates).toHaveBeenCalled();
+  it('should fetch only the latest exchange rates if no date is selected', (done) => {
+    currencyServiceSpy.getLatestExchangeRates.and.returnValue(of(mockResponse));
+    currencyServiceSpy.getExchangeRatesFromDate.and.returnValue(of(mockResponse));
+
+    component.fetchRatesOnDateChange$.subscribe((response) => {
+      expect(response).toEqual(mockResponse);
+      expect(currencyServiceSpy.getLatestExchangeRates).toHaveBeenCalled();
+      expect(currencyServiceSpy.getExchangeRatesFromDate).not.toHaveBeenCalled();
+      done();
+    });
   });
 
-  it('should render ExchangeFormComponent and RatesListComponent when response is available', () => {
-    const exchangeFormElement = fixture.debugElement.query(By.css('app-exchange-form'));
-    const ratesListElement = fixture.debugElement.query(By.css('app-rates-list'));
-    const noDataFoundElement = fixture.debugElement.query(By.css('app-no-data-found'));
+  it('should fetch only exchange rates from date if date exists', (done) => {
+    const selectedDate = '2024-05-29';
+    dateStore.setDate(selectedDate);
 
-    expect(exchangeFormElement).toBeTruthy();
-    expect(ratesListElement).toBeTruthy();
-    expect(noDataFoundElement).toBeNull();
+    currencyServiceSpy.getLatestExchangeRates.and.returnValue(of(mockResponse));
+    currencyServiceSpy.getExchangeRatesFromDate.and.returnValue(of(mockResponse));
+
+    component.fetchRatesOnDateChange$.subscribe((response) => {
+      expect(response).toEqual(mockResponse);
+      expect(currencyServiceSpy.getLatestExchangeRates).not.toHaveBeenCalled();
+      expect(currencyServiceSpy.getExchangeRatesFromDate).toHaveBeenCalledWith(selectedDate);
+      done();
+    });
   });
 
-  it('should render NoDataFoundComponent when no response is available', () => {
-    // Mock response to return undefined
-    currencyServiceMock.getLatestExchangeRates.and.returnValue(of(undefined));
-    fixture.detectChanges();
+  it('should update exchangeRates correctly if response exists', (done) => {
+    currencyServiceSpy.getLatestExchangeRates.and.returnValue(of(mockResponse));
 
-    const exchangeFormElement = fixture.debugElement.query(By.css('app-exchange-form'));
-    const ratesListElement = fixture.debugElement.query(By.css('app-rates-list'));
-    const noDataFoundElement = fixture.debugElement.query(By.css('app-no-data-found'));
+    component.fetchRatesOnDateChange$.subscribe(() => {
+      expect(component.exchangeRates()).toEqual(mockRates);
+      done();
+    });
+  });
+  it('should update exchangeRates correctly if response not exists', (done) => {
+    currencyServiceSpy.getLatestExchangeRates.and.returnValue(of(undefined));
 
-    expect(exchangeFormElement).toBeNull();
-    expect(ratesListElement).toBeNull();
-    expect(noDataFoundElement).toBeTruthy();
+    component.fetchRatesOnDateChange$.subscribe(() => {
+      expect(component.exchangeRates()).toEqual([]);
+      done();
+    });
   });
 });

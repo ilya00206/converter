@@ -20,10 +20,9 @@ export class CurrencyService {
     const url = `${this.apiUrl}${date}`;
 
     const cached = this.cache.has(date);
-    const cache = this.cache.get(date);
 
     if (cached) {
-      return of(cache);
+      return of(this.cache.get(date));
     }
 
     return this.http.get<NBPTableResponse[]>(url).pipe(

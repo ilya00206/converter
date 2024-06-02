@@ -1,4 +1,5 @@
 import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
 import { LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -6,7 +7,6 @@ import { By } from '@angular/platform-browser';
 import { SkipLinkComponent } from '@ui/skip-link/skip-link.component';
 import { SKIP_LINKS } from '@ui/skip-link/skip-links';
 import { HeaderComponent } from './header.component';
-import localePl from '@angular/common/locales/pl';
 
 registerLocaleData(localePl);
 describe('HeaderComponent', () => {
@@ -21,6 +21,8 @@ describe('HeaderComponent', () => {
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+
+    await fixture.whenStable();
   });
 
   it('should create the component', () => {
@@ -28,7 +30,6 @@ describe('HeaderComponent', () => {
   });
 
   it('should render skip links', () => {
-    fixture.detectChanges();
     const skipLinkElements = fixture.debugElement.queryAll(By.directive(SkipLinkComponent));
     expect(skipLinkElements.length).toBe(SKIP_LINKS.length);
   });

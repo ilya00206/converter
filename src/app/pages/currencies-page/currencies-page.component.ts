@@ -20,11 +20,12 @@ export class CurrenciesPageComponent {
   private readonly currencyService = inject(CurrencyService);
   private readonly store = inject(DateStore);
 
+  readonly date = this.store.date;
   /**
-   * Najperw pobierz aktualne dane, po zmianie w kalendarzu pobierz dane z wybranego dnia
+   * Najperw pobierz wyłącznie aktualne dane, po zmianie daty pobierz dane wyłącznie z wybranego dnia
    */
   readonly fetchRatesOnDateChange$: Observable<NBPTableResponse | undefined> = toObservable(
-    this.store.date
+    this.date
   ).pipe(
     startWith(undefined),
     pairwise(),
@@ -35,10 +36,10 @@ export class CurrenciesPageComponent {
           .pipe(tap((resp) => this.store.setDate(resp?.effectiveDate)));
       }
 
-      if (currDate && !prevDate) {
-        return of(this.response());
+      const response = this.response();
+      if (!prevDate && currDate && response) {
+        return of(response);
       }
-
       return this.currencyService.getExchangeRatesFromDate(currDate);
     })
   );

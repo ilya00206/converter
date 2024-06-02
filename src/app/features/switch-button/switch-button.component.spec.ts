@@ -15,7 +15,6 @@ describe('SwitchButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SwitchButtonComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

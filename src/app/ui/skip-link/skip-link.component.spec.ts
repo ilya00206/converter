@@ -8,6 +8,8 @@ describe('SkipLinkComponent', () => {
   let fixture: ComponentFixture<SkipLinkComponent>;
   let document: Document;
 
+  const mockId = 'test-id';
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SkipLinkComponent],
@@ -16,6 +18,9 @@ describe('SkipLinkComponent', () => {
     fixture = TestBed.createComponent(SkipLinkComponent);
     component = fixture.componentInstance;
     document = TestBed.inject(DOCUMENT);
+
+    fixture.componentRef.setInput('skipLink', { id: mockId, label: 'Skip to main content' });
+    await fixture.whenStable();
   });
 
   it('should create', () => {
@@ -24,9 +29,6 @@ describe('SkipLinkComponent', () => {
 
   it('should call scrollAuto on click', () => {
     spyOn(component, 'scrollAuto');
-    fixture.componentRef.setInput('skipLink', { id: 'test-id', label: 'Skip to main content' });
-
-    fixture.detectChanges();
 
     const link = fixture.debugElement.query(By.css('.skip-link'));
     link.triggerEventHandler('click', new Event('click'));
@@ -36,15 +38,12 @@ describe('SkipLinkComponent', () => {
 
   it('should focus the target element on scrollAuto call', () => {
     const targetElement = document.createElement('div');
-    targetElement.id = 'test-id';
+    targetElement.id = mockId;
     document.body.appendChild(targetElement);
-
-    fixture.componentRef.setInput('skipLink', { id: 'test-id', label: 'Skip to main content' });
-    fixture.detectChanges();
 
     const event = new Event('click');
     spyOn(event, 'preventDefault');
-    component.scrollAuto(event, 'test-id');
+    component.scrollAuto(event, mockId);
 
     expect(event.preventDefault).toHaveBeenCalled();
     expect(targetElement.getAttribute('tabindex')).toBe('-1');

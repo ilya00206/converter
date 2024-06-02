@@ -5,6 +5,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 describe('CurrencySelectComponent', () => {
   let component: CurrencySelectComponent;
   let fixture: ComponentFixture<CurrencySelectComponent>;
+  const mockValue = 'PLN';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +17,6 @@ describe('CurrencySelectComponent', () => {
     fixture.componentRef.setInput('id', 'test');
     fixture.componentRef.setInput('options', []);
     fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -26,8 +26,8 @@ describe('CurrencySelectComponent', () => {
   it('should register onChange function', () => {
     const onChangeFn = jasmine.createSpy('onChange');
     component.registerOnChange(onChangeFn);
-    component.onChange('PLN');
-    expect(onChangeFn).toHaveBeenCalledWith('PLN');
+    component.onChange(mockValue);
+    expect(onChangeFn).toHaveBeenCalledWith(mockValue);
   });
 
   it('should register onTouched function', () => {
@@ -45,15 +45,15 @@ describe('CurrencySelectComponent', () => {
   });
 
   it('should write value', () => {
-    component.writeValue('PLN');
-    expect(component.value()).toBe('PLN');
+    component.writeValue(mockValue);
+    expect(component.value()).toBe(mockValue);
   });
 
   it('should change value and call onChange', () => {
     const onChangeFn = jasmine.createSpy('onChange');
     component.registerOnChange(onChangeFn);
-    component.valueChanged('PLN');
-    expect(onChangeFn).toHaveBeenCalledWith('PLN');
-    expect(component.value()).toBe('PLN');
+    component.valueChanged(mockValue);
+    expect(onChangeFn).toHaveBeenCalledWith(mockValue);
+    expect(component.value()).toBe(mockValue);
   });
 });

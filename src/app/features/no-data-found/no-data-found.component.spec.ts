@@ -1,58 +1,47 @@
-import { Injectable, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DateStore } from '@store/date.service';
 import { NoDataFoundComponent } from './no-data-found.component';
 
-@Injectable()
-class MockStore {
-  _date = signal<string | undefined>('2024-06-01');
-  get date() {
-    return this._date.asReadonly();
-  }
-  setDate = (val?: string) => {
-    this._date.set(val);
-  };
-}
+import { DateStore } from '@store/date.service';
 
 describe('NoDataFoundComponent', () => {
   let component: NoDataFoundComponent;
   let fixture: ComponentFixture<NoDataFoundComponent>;
-  let mockStore: MockStore;
-  beforeEach(async () => {
-    mockStore = new MockStore();
 
+  let dateStoreMock: jasmine.SpyObj<DateStore>;
+
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoDataFoundComponent],
-      providers: [{ provide: DateStore, useValue: mockStore }],
+      providers: [
+        {
+          provide: DateStore,
+          useValue: {
+            date: () => undefined,
+            setDate: jasmine.createSpy('setDate'),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NoDataFoundComponent);
+    dateStoreMock = TestBed.inject(DateStore) as jasmine.SpyObj<DateStore>;
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the correct date in the header', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const header = compiled.querySelector('h2');
-    expect(header?.textContent).toBeTruthy();
+  it('should display the default message when date is undefined', () => {
+    expect(fixture.nativeElement.querySelector('h2').textContent).toContain(
+      'Nie znaleziono danych'
+    );
   });
 
-  it('should call onGetLatestData when the button is clicked', () => {
-    spyOn(component, 'onGetLatestData');
-
-    const button = fixture.debugElement.query(By.css('button')).nativeElement;
+  it('should call setDate with undefined when the button is clicked', () => {
+    const button = fixture.nativeElement.querySelector('button');
     button.click();
-
-    expect(component.onGetLatestData).toHaveBeenCalled();
-  });
-
-  xit('should call store.setDate with undefined when onGetLatestData is called', () => {
-    component.onGetLatestData();
-    expect(mockStore.setDate).toHaveBeenCalledWith(undefined);
+    expect(dateStoreMock.setDate).toHaveBeenCalledWith(undefined);
   });
 });
