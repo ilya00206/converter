@@ -17,8 +17,6 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
-  const oneHour = 60 * 60 * 1000;
-
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -26,7 +24,7 @@ export function app(): express.Express {
   server.get(
     '**',
     express.static(browserDistFolder, {
-      maxAge: oneHour,
+      maxAge: '1y',
       index: 'index.html',
     })
   );
