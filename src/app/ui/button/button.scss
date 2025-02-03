@@ -17,18 +17,22 @@ button {
     background-color: var(--foreground-color);
     transition: background-color 0.2s ease-in-out;
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
       background-color: var(--focus-color);
+    }
+
+    &:active {
+      background-color: var(--active-color);
     }
   }
 
   &.icon {
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
       border-color: var(--focus-color);
+    }
+
+    &:active {
+      background-color: var(--active-color);
     }
   }
 

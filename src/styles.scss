@@ -6,6 +6,7 @@
   --background-color: #fff;
   --border-color: #d1d5db;
   --focus-color: #444;
+  --active-color: #4f4f4f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,6 +15,7 @@
     --background-color: #09090b;
     --border-color: #27272a;
     --focus-color: #cecece;
+    --active-color: #e0e0e0;
   }
 }
 
