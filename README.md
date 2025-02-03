@@ -93,6 +93,15 @@ Ujemne kwoty można by było zablokować, ale znak minusa nie wpływa na poprawn
 - npm install
 - npm start
 
+## Uruchomienie paczki produkcyjnej lokalnie
+
+- npm run build
+- npm run serve:ssr:CurrencyExchange
+
+## Uruchomienie paczki produkcyjnej na Docker
+
+- docker compose up
+
 ## Raporty
 
 ### Coverage
