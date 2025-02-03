@@ -1,4 +1,4 @@
-# Aplikacja do przeliczania walut NBP
+# Aplikacja do przeliczania walut NBP - zadanie rekrutacyjne Frontend Developer
 
 ## Demo
 
