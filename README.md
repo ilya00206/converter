@@ -6,7 +6,7 @@
 
 ## Cel projektu
 
-Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze narzędzia i techniki programistyczne związane z Angular na 01.02.2025.
+Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze narzędzia i techniki programistyczne związane z Angular na 01.06.2024 (zaktualizowano dnia 01.02.2025). 
 
 ## Wymagania funkcjonalne i niefunkcjonalne
 
