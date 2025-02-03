@@ -6,7 +6,7 @@
 
 ## Cel projektu
 
-Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze narzędzia i techniki programistyczne związane z Angular na 01.06.2024.
+Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze narzędzia i techniki programistyczne związane z Angular na 01.02.2025.
 
 ## Wymagania funkcjonalne i niefunkcjonalne
 
@@ -14,14 +14,14 @@ Utworzenie aplikacji do przeliczania walut, wykorzystując wyłącznie najnowsze
 - Na stronie głównej powinny być wyświetlane aktualne kursy walut z możliwością wyboru daty waluty
 - Użytkownik powinien mieć możliwość przeliczenia kwoty z jednej waluty na drugą. Do tego celu powinien być dostępny formularz, w którym użytkownik może wprowadzić kwotę i wybrać waluty
 - Aplikacja powinna być responsywna i dobrze wyglądać na różnych urządzeniach
-- Aplikacja powinna spełniać standardy WCAG 2.1
+- Aplikacja powinna spełniać standardy WCAG 2.1 AA
 - UI powinien być czytelny i atrakcyjny
 
 ## Technologie i narzędzia
 
-- Angular v18 SSR zoneless
+- Angular v19 SSR zoneless
 - Node v20.11.1
-- TypeScript v5.4
+- TypeScript v5.7
 - Scss
 - Jasmine, Karma
 - Eslint
