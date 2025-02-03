@@ -6,18 +6,17 @@ type OnChangeFn = (value: string) => void;
 type OnTouchedFn = () => void;
 
 @Component({
-  selector: 'app-currency-select',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './currency-select.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CurrencySelectComponent),
-      multi: true,
-    },
-  ],
+    selector: 'app-currency-select',
+    imports: [FormsModule],
+    templateUrl: './currency-select.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CurrencySelectComponent),
+            multi: true,
+        },
+    ]
 })
 export class CurrencySelectComponent implements ControlValueAccessor {
   readonly options = input.required<ExchangeRate[]>();

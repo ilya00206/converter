@@ -3,14 +3,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControlComponent } from './form-control.component';
 
 @Component({
-  template: `
+    template: `
     <app-form-control [id]="'testId'" [label]="'Test Label'">
       <input id="testId" />
     </app-form-control>
   `,
-  standalone: true,
-  imports: [FormControlComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormControlComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestHostComponent {}
 

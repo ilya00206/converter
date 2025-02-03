@@ -11,19 +11,18 @@ import { convertCurrency } from '@utils/convert-currency';
 import { DEFAULT_EXCHANGE_FORM_VALUE } from './default-exchange-form-value';
 
 @Component({
-  selector: 'app-exchange-form',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CardComponent,
-    CurrencySelectComponent,
-    SwitchButtonComponent,
-    ConversionResultComponent,
-    FormControlComponent,
-  ],
-  templateUrl: './exchange-form.component.html',
-  styleUrl: './exchange-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-exchange-form',
+    imports: [
+        ReactiveFormsModule,
+        CardComponent,
+        CurrencySelectComponent,
+        SwitchButtonComponent,
+        ConversionResultComponent,
+        FormControlComponent,
+    ],
+    templateUrl: './exchange-form.component.html',
+    styleUrl: './exchange-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExchangeFormComponent {
   readonly exchangeRates = input([], {
@@ -37,7 +36,6 @@ export class ExchangeFormComponent {
   constructor() {
     effect(
       () => this.result.set(this.convertCurrency(this.exchangeRates(), this.form.getRawValue())),
-      { allowSignalWrites: true }
     );
   }
 

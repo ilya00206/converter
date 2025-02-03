@@ -4,12 +4,11 @@ import { ConversionResult } from '@models/index';
 import { CardComponent } from '@ui/card/card.component';
 
 @Component({
-  selector: 'app-conversion-result',
-  standalone: true,
-  imports: [CardComponent, DecimalPipe],
-  templateUrl: './conversion-result.component.html',
-  styleUrl: './conversion-result.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-conversion-result',
+    imports: [CardComponent, DecimalPipe],
+    templateUrl: './conversion-result.component.html',
+    styleUrl: './conversion-result.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConversionResultComponent {
   readonly result = input.required<ConversionResult>();

@@ -4,10 +4,9 @@ import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
-  standalone: true,
-  imports: [MainComponent, HeaderComponent, RouterOutlet],
-  templateUrl: './layout.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-layout',
+    imports: [MainComponent, HeaderComponent, RouterOutlet],
+    templateUrl: './layout.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutComponent {}

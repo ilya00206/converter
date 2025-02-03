@@ -3,11 +3,10 @@ import { DateStore } from '@store/date.service';
 import { CardComponent } from '@ui/card/card.component';
 
 @Component({
-  selector: 'app-no-data-found',
-  standalone: true,
-  imports: [CardComponent],
-  templateUrl: './no-data-found.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-no-data-found',
+    imports: [CardComponent],
+    templateUrl: './no-data-found.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoDataFoundComponent {
   private readonly store = inject(DateStore);

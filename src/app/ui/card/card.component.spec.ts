@@ -3,15 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardComponent } from './card.component';
 
 @Component({
-  template: `
+    template: `
     <app-card>
       <div card-header>Test Header</div>
       <div card-body>Test Body</div>
     </app-card>
   `,
-  standalone: true,
-  imports: [CardComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CardComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestHostComponent {}
 

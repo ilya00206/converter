@@ -9,12 +9,11 @@ import { Observable, startWith, pairwise, switchMap, tap, of } from 'rxjs';
 import { CurrencyService } from './currency.service';
 
 @Component({
-  selector: 'app-currencies-page',
-  standalone: true,
-  imports: [ExchangeFormComponent, RatesListComponent, NoDataFoundComponent],
-  templateUrl: './currencies-page.component.html',
-  styleUrl: './currencies-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-currencies-page',
+    imports: [ExchangeFormComponent, RatesListComponent, NoDataFoundComponent],
+    templateUrl: './currencies-page.component.html',
+    styleUrl: './currencies-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CurrenciesPageComponent {
   private readonly currencyService = inject(CurrencyService);
