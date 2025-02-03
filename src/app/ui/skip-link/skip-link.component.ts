@@ -4,7 +4,6 @@ import { SkipLink } from './skip-links';
 
 @Component({
   selector: 'app-skip-link',
-  standalone: true,
   templateUrl: './skip-link.component.html',
   styleUrl: './skip-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

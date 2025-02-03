@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-switch-icon',
-  standalone: true,
   template: `<svg
     role="presentation"
     aria-hidden="true"
