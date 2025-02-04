@@ -32,7 +32,7 @@ button {
     }
 
     &:active {
-      background-color: var(--active-color);
+      border-color: var(--active-color);
     }
   }
 
